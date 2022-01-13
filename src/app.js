@@ -17,6 +17,7 @@ window.onload = function() {
     paymentMethod: "",
     notes: ""
   };
+  console.log(formData);
 
   form.addEventListener("change", e => {
     formData[e.target.name] = e.target.value;
@@ -162,6 +163,40 @@ window.onload = function() {
       lastNameInput.classList.remove("green-border");
       lastNameError.classList.remove("hidden");
       lastNameInput.classList.add("red");
+    }
+
+    //City Validation
+    if (formData.city.length > 0) {
+      const cityError = document.querySelector("#city-error");
+      const cityInput = document.querySelector("#city-input");
+      if (/\d/.test(formData.city) === false) {
+        console.log("Yes! City doesn't contain numbers");
+        cityInput.classList.remove("red");
+        cityError.classList.add("hidden");
+        cityInput.classList.add("green-border");
+      } else {
+        console.log("First Name can't have any numbers");
+        cityError.innerHTML = "City can't contain numbers";
+        cityInput.classList.remove("green-border");
+        cityError.classList.remove("hidden");
+        cityInput.classList.add("red");
+      }
+    } else {
+      const cityInput = document.querySelector("#city-input");
+      const cityError = document.querySelector("#city-error");
+      cityError.innerHTML = "This field is empty! Please enter your city.";
+      cityInput.classList.remove("green-border");
+      cityError.classList.remove("hidden");
+      cityInput.classList.add("red");
+    }
+
+    //State Validation
+    if (formData.state.length > 0) {
+      const stateError = document.querySelector("#state-error");
+      const stateSelect = document.querySelector("#state-select");
+      if (formData.state === "pickState") {
+        stateSelect.classList.add("red");
+      }
     }
   });
 };
