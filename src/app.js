@@ -7,7 +7,7 @@ window.onload = function() {
   let formData = {};
 
   form.addEventListener("change", e => {
-    console.log(e.target.name);
-    console.log(e.target.value);
+    formData[e.target.name] = e.target.value;
+    console.log(formData);
   });
 };
