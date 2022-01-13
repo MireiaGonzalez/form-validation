@@ -9,3 +9,19 @@ body {
 .card-header {
   background-color: rgb(123, 191, 255);
 }
+
+.red {
+  background-color: rgb(255, 176, 176);
+}
+
+.red::placeholder {
+  color: rgb(163, 27, 27);
+}
+
+.red:focus {
+  background-color: rgb(255, 196, 196);
+}
+
+.green-border {
+  border: 2px solid green;
+}
