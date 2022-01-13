@@ -25,46 +25,143 @@ window.onload = function() {
 
   submitButton.addEventListener("click", e => {
     e.preventDefault();
+    //Card Number validation
     if (formData.ccn.length > 0) {
+      const ccnError = document.querySelector("#card-error");
       const ccnInput = document.querySelector("#ccn-input");
       if (isNaN(formData.ccn) === false) {
         console.log("Yay it's a number!");
         if (formData.ccn.length === 16) {
-          ccnInput.classList.add("green-border");
           ccnInput.classList.remove("red");
+          ccnError.classList.add("hidden");
+          ccnInput.classList.add("green-border");
         } else {
-          ccnInput.value = "";
-          ccnInput.placeholder = "Card # must be 16 numbers long!";
+          ccnError.innerHTML = "Oops! Card must be 16 digits long!";
+          ccnInput.classList.remove("green-border");
+          ccnError.classList.remove("hidden");
           ccnInput.classList.add("red");
         }
       } else {
         console.log("Not a number :(");
+        ccnError.innerHTML = "Please enter only numbers.";
+        ccnInput.classList.remove("green-border");
+        ccnError.classList.remove("hidden");
+        ccnInput.classList.add("red");
       }
     } else {
       const ccnInput = document.querySelector("#ccn-input");
-      ccnInput.placeholder = "This field is empty!";
+      const ccnError = document.querySelector("#card-error");
+      ccnError.innerHTML = "This field is empty! Enter a card number.";
+      ccnInput.classList.remove("green-border");
+      ccnError.classList.remove("hidden");
       ccnInput.classList.add("red");
     }
 
+    //CVC number validation
     if (formData.cvc.length > 0) {
+      const cvcError = document.querySelector("#cvc-error");
       const cvcInput = document.querySelector("#cvc-input");
-      if (isNaN(formData.ccn) === false) {
+      if (isNaN(formData.cvc) === false) {
         console.log("Yay it's a number!");
-        if (formData.ccn.length === 3) {
-          cvcInput.classList.add("green-border");
+        if (formData.cvc.length === 3) {
           cvcInput.classList.remove("red");
+          cvcError.classList.add("hidden");
+          cvcInput.classList.add("green-border");
         } else {
-          cvcInput.value = "";
-          cvcInput.placeholder = "CVC must be 3 numbers long!";
+          cvcError.innerHTML = "Oops! CVC must be 3 digits long!";
+          cvcInput.classList.remove("green-border");
+          cvcError.classList.remove("hidden");
           cvcInput.classList.add("red");
         }
       } else {
         console.log("Not a number :(");
+        cvcError.innerHTML = "Please enter 3 numbers, not letters.";
+        cvcInput.classList.remove("green-border");
+        cvcError.classList.remove("hidden");
+        cvcInput.classList.add("red");
       }
     } else {
       const cvcInput = document.querySelector("#cvc-input");
-      cvcInput.placeholder = "This field is empty!";
+      const cvcError = document.querySelector("#cvc-error");
+      cvcError.innerHTML = "Empty field! Please enter the CVC number.";
+      cvcInput.classList.remove("green-border");
+      cvcError.classList.remove("hidden");
       cvcInput.classList.add("red");
+    }
+
+    //Amount validation
+    if (formData.amount.length > 0) {
+      const amountError = document.querySelector("#amount-error");
+      const amountInput = document.querySelector("#amount-input");
+      if (isNaN(formData.amount) === false) {
+        console.log("Yay it's a number!");
+        amountInput.classList.remove("red");
+        amountError.classList.add("hidden");
+        amountInput.classList.add("green-border");
+      } else {
+        console.log("Not a number :(");
+        amountError.innerHTML = "We need the amount in numbers, please.";
+        amountInput.classList.remove("green-border");
+        amountError.classList.remove("hidden");
+        amountInput.classList.add("red");
+      }
+    } else {
+      const amountInput = document.querySelector("#amount-input");
+      const amountError = document.querySelector("#amount-error");
+      amountError.innerHTML = "Empty field! Amount is not optional.";
+      amountInput.classList.remove("green-border");
+      amountError.classList.remove("hidden");
+      amountInput.classList.add("red");
+    }
+
+    //First Name Validation
+    if (formData.firstName.length > 0) {
+      const firstNameError = document.querySelector("#first-name-error");
+      const firstNameInput = document.querySelector("#first-name-input");
+      if (/\d/.test(formData.firstName) === false) {
+        console.log("Nice, no numbers in the first name");
+        firstNameInput.classList.remove("red");
+        firstNameError.classList.add("hidden");
+        firstNameInput.classList.add("green-border");
+      } else {
+        console.log("First Name can't have any numbers");
+        firstNameError.innerHTML = "This field doesn't accept numbers.";
+        firstNameInput.classList.remove("green-border");
+        firstNameError.classList.remove("hidden");
+        firstNameInput.classList.add("red");
+      }
+    } else {
+      const firstNameInput = document.querySelector("#first-name-input");
+      const firstNameError = document.querySelector("#first-name-error");
+      firstNameError.innerHTML = "Please enter your first name.";
+      firstNameInput.classList.remove("green-border");
+      firstNameError.classList.remove("hidden");
+      firstNameInput.classList.add("red");
+    }
+
+    //Last Name Validation
+    if (formData.lastName.length > 0) {
+      const lastNameError = document.querySelector("#first-name-error");
+      const lastNameInput = document.querySelector("#first-name-input");
+      if (/\d/.test(formData.firstName) === false) {
+        console.log("Nice, no numbers in the first name");
+        lastNameInput.classList.remove("red");
+        lastNameError.classList.add("hidden");
+        lastNameInput.classList.add("green-border");
+      } else {
+        console.log("First Name can't have any numbers");
+        lastNameError.innerHTML = "This field doesn't accept numbers.";
+        lastNameInput.classList.remove("green-border");
+        lastNameError.classList.remove("hidden");
+        lastNameInput.classList.add("red");
+      }
+    } else {
+      const lastNameInput = document.querySelector("#first-name-input");
+      const lastNameError = document.querySelector("#first-name-error");
+      lastNameError.innerHTML = "Please enter your last name.";
+      lastNameInput.classList.remove("green-border");
+      lastNameError.classList.remove("hidden");
+      lastNameInput.classList.add("red");
     }
   });
 };
