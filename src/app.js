@@ -141,9 +141,9 @@ window.onload = function() {
 
     //Last Name Validation
     if (formData.lastName.length > 0) {
-      const lastNameError = document.querySelector("#first-name-error");
-      const lastNameInput = document.querySelector("#first-name-input");
-      if (/\d/.test(formData.firstName) === false) {
+      const lastNameError = document.querySelector("#last-name-error");
+      const lastNameInput = document.querySelector("#last-name-input");
+      if (/\d/.test(formData.lastName) === false) {
         console.log("Nice, no numbers in the first name");
         lastNameInput.classList.remove("red");
         lastNameError.classList.add("hidden");
@@ -156,8 +156,8 @@ window.onload = function() {
         lastNameInput.classList.add("red");
       }
     } else {
-      const lastNameInput = document.querySelector("#first-name-input");
-      const lastNameError = document.querySelector("#first-name-error");
+      const lastNameInput = document.querySelector("#last-name-input");
+      const lastNameError = document.querySelector("#last-name-error");
       lastNameError.innerHTML = "Please enter your last name.";
       lastNameInput.classList.remove("green-border");
       lastNameError.classList.remove("hidden");
