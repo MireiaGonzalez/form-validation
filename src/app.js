@@ -191,12 +191,60 @@ window.onload = function() {
     }
 
     //State Validation
-    if (formData.state.length > 0) {
+    if (formData.state.length <= 0) {
       const stateError = document.querySelector("#state-error");
       const stateSelect = document.querySelector("#state-select");
-      if (formData.state === "pickState") {
-        stateSelect.classList.add("red");
+      stateError.innerHTML = "You need to select a state.";
+      stateError.classList.remove("hidden");
+      stateSelect.classList.remove("green-border");
+      stateSelect.classList.add("red");
+    } else if (formData.state === "pickState") {
+      const stateError = document.querySelector("#state-error");
+      const stateSelect = document.querySelector("#state-select");
+      stateError.innerHTML = "You need to select a state.";
+      stateError.classList.remove("hidden");
+      stateSelect.classList.remove("green-border");
+      stateSelect.classList.add("red");
+    } else {
+      const stateError = document.querySelector("#state-error");
+      const stateSelect = document.querySelector("#state-select");
+      console.log("Yes, you picked a State!");
+      stateSelect.classList.remove("red");
+      stateError.classList.add("hidden");
+      stateSelect.classList.add("green-border");
+    }
+
+    //Postal Code Validation
+    if (formData.cvc.length > 0) {
+      const postalCodeError = document.querySelector("#postal-code-error");
+      const postalCodeInput = document.querySelector("#postal-code-input");
+      if (isNaN(formData.cvc) === false) {
+        console.log("Yay it's a number!");
+        if (formData.cvc.length === 5) {
+          postalCodeInput.classList.remove("red");
+          postalCodeError.classList.add("hidden");
+          postalCodeInput.classList.add("green-border");
+        } else {
+          postalCodeError.innerHTML =
+            "Sorry! Postal code must be 5 digits long.";
+          postalCodeInput.classList.remove("green-border");
+          postalCodeError.classList.remove("hidden");
+          postalCodeInput.classList.add("red");
+        }
+      } else {
+        console.log("Not a number :(");
+        postalCodeError.innerHTML = "Please enter 5 numbers, not letters.";
+        postalCodeInput.classList.remove("green-border");
+        postalCodeError.classList.remove("hidden");
+        postalCodeInput.classList.add("red");
       }
+    } else {
+      const postalCodeInput = document.querySelector("#postal-code-input");
+      const postalCodeError = document.querySelector("#postal-code-error");
+      postalCodeError.innerHTML = "Empty field! Please enter your postal code.";
+      postalCodeInput.classList.remove("green-border");
+      postalCodeError.classList.remove("hidden");
+      postalCodeInput.classList.add("red");
     }
   });
 };
