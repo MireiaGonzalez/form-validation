@@ -215,12 +215,12 @@ window.onload = function() {
     }
 
     //Postal Code Validation
-    if (formData.cvc.length > 0) {
+    if (formData.postalCode.length > 0) {
       const postalCodeError = document.querySelector("#postal-code-error");
       const postalCodeInput = document.querySelector("#postal-code-input");
-      if (isNaN(formData.cvc) === false) {
+      if (isNaN(formData.postalCode) === false) {
         console.log("Yay it's a number!");
-        if (formData.cvc.length === 5) {
+        if (formData.postalCode.length === 5) {
           postalCodeInput.classList.remove("red");
           postalCodeError.classList.add("hidden");
           postalCodeInput.classList.add("green-border");
